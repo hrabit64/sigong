@@ -1,6 +1,5 @@
 = Sigong - Temporary File Sharing
 임시 파일 공유 API
-
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs

@@ -436,13 +436,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="book toc2 toc-left">
 <div id="header">
 <h1>Sigong - Temporary File Sharing</h1>
 <div class="details">
 <span id="author" class="author">임시 파일 공유 API</span><br>
 <span id="revnumber">version 0.0.1-SNAPSHOT</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#file-upload">POST : /api/v1/file</a></li>
+<li><a href="#file-get-info">GET: /api/v1/file/{downloadCode}</a></li>
+<li><a href="#file-revoke">DELETE: /api/v1/file/{downloadCode}</a></li>
+<li><a href="#file-download">GET: /api/v1/file/{downloadCode}/download</a></li>
+</ul>
 </div>
 </div>
 <div id="content">
@@ -509,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_파일_업로드_response_body"><a class="link" href="#_파일_업로드_response_body">Response body</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>{
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "download_code" : "11111111111111111111111111111111"
 }</code></pre>
 </div>
@@ -519,7 +529,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_파일_업로드_http_request"><a class="link" href="#_파일_업로드_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /api/v1/file HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/v1/file HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Host: docs.api.com:8080
 
@@ -536,7 +546,7 @@ some xml
 <h4 id="_파일_업로드_http_response"><a class="link" href="#_파일_업로드_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 60
 
@@ -633,7 +643,7 @@ Content-Length: 60
 <h4 id="_파일_정보_조회_response_body"><a class="link" href="#_파일_정보_조회_response_body">Response body</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>{
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "file_name" : "filename.pdf",
   "md5" : "test md5",
   "sha1" : "test sha1",
@@ -648,7 +658,7 @@ Content-Length: 60
 <h4 id="_파일_정보_조회_http_request"><a class="link" href="#_파일_정보_조회_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /api/v1/file/11111111111111111111111111111111 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/v1/file/11111111111111111111111111111111 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: docs.api.com:8080</code></pre>
@@ -659,7 +669,7 @@ Host: docs.api.com:8080</code></pre>
 <h4 id="_파일_정보_조회_http_response"><a class="link" href="#_파일_정보_조회_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 232
 
@@ -736,7 +746,7 @@ Content-Length: 232
 <h4 id="_파일_삭제_및_코드_소멸_response_body"><a class="link" href="#_파일_삭제_및_코드_소멸_response_body">Response body</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>{
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "message" : "성공적으로 코드와 파일을 삭제했습니다."
 }</code></pre>
 </div>
@@ -746,7 +756,7 @@ Content-Length: 232
 <h4 id="_파일_삭제_및_코드_소멸_http_request"><a class="link" href="#_파일_삭제_및_코드_소멸_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /api/v1/file/11111111111111111111111111111111 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/v1/file/11111111111111111111111111111111 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: docs.api.com:8080</code></pre>
@@ -757,7 +767,7 @@ Host: docs.api.com:8080</code></pre>
 <h4 id="_파일_삭제_및_코드_소멸_http_response"><a class="link" href="#_파일_삭제_및_코드_소멸_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 77
 
@@ -807,7 +817,7 @@ Content-Length: 77
 <h4 id="_파일_다운로드_및_코드_소멸_http_request"><a class="link" href="#_파일_다운로드_및_코드_소멸_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /api/v1/file/11111111111111111111111111111111/download HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/v1/file/11111111111111111111111111111111/download HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: docs.api.com:8080</code></pre>
@@ -818,7 +828,7 @@ Host: docs.api.com:8080</code></pre>
 <h4 id="_파일_다운로드_및_코드_소멸_http_response"><a class="link" href="#_파일_다운로드_및_코드_소멸_http_response">HTTP response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Disposition: attachment;filename="sigongjoah.pdf"
 Cache-Control: no-cache, no-store, must-revalidate
 Pragma: no-cache
@@ -836,8 +846,11 @@ Accept-Ranges: bytes</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2022-08-27 04:25:28 +0900
+Last updated 2022-08-27 04:50:17 +0900
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>
