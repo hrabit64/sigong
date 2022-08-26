@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+application-test.properties
+application-dev.properties
+application-product.properties
+logback-product.xml
+logback-dev.xml
+logback-test.xml
+*.sql

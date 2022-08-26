@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "virusTotal.api-key",
+      "type": "java.lang.String",
+      "description": "Description for virusTotal.api-key."
+    },
+    {
+      "name": "sigong.filesave.path",
+      "type": "java.lang.String",
+      "description": "Description for sigong.filesave.path."
+    }
+  ] }
