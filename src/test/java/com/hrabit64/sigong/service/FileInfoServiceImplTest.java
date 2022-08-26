@@ -9,6 +9,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
@@ -63,10 +64,13 @@ class FileInfoServiceImplTest {
                 .code("1234")
                 .build();
 
+        FileInfoAddRequestServiceDto testDto = Mockito.mock(FileInfoAddRequestServiceDto.class);
+
         FileInfo target = addRequestServiceDto.toEntity(CodeExpireTime);
+        doReturn(target).when(testDto).toEntity(CodeExpireTime);
 
         //when
-        fileInfoService.add(addRequestServiceDto);
+        fileInfoService.add(testDto);
 
         //then
         verify(fileInfoRepository).save(target);

@@ -22,7 +22,8 @@ public class FileInfoServiceImpl implements FileInfoService {
     @Override
     @Transactional
     public void add(FileInfoAddRequestServiceDto addRequestDto) {
-        fileInfoRepository.save(addRequestDto.toEntity(CodeExpireTime));
+        FileInfo target = addRequestDto.toEntity(CodeExpireTime);
+        fileInfoRepository.save(target);
     }
 
     @Override
