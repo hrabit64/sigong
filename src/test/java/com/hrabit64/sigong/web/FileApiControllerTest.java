@@ -256,7 +256,7 @@ class FileApiControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
-                .andExpect(header().string("Content-Disposition","attachment;filename=\""+testFileName+"\""))
+                .andExpect(header().string("Content-Disposition","attachment;filename*=\""+testFileName+"\";"))
                 .andDo(document("file-download",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),

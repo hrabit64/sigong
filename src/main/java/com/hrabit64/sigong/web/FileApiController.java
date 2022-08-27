@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 @RequiredArgsConstructor
@@ -85,7 +86,7 @@ public class FileApiController {
              @UserCheck(isLimit = false) HttpServletRequest request) {
 
         FileInfoResponseControllerDto fileInfoResponseDto = fileInfoService.findByCode(downloadCode).toControllerDto();
-
+        logger.info("{}",fileInfoResponseDto.toString());
         return ResponseEntity.ok(fileInfoResponseDto);
     }
 
@@ -117,11 +118,9 @@ public class FileApiController {
 
         //file 다운로드용 header 처리
         HttpHeaders header = new HttpHeaders();
-
+        String fileName = URLEncoder.encode(targetFile.getName()).replaceAll("\\+", "%20");
         header.add(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment;filename=\""
-                        //그냥 filename을 넣으면, 한글이 깨질 수 있음. 따라서 아래와 같이 처리를 해야함.(firefox,chrome 등 에서만 동작)
-                        + new String(targetFile.getName().getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"");
+                "attachment;filename*=\"" + fileName+ "\";");
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
         header.add("Pragma", "no-cache");
         header.add("Expires", "0");

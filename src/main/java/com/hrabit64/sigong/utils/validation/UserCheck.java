@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UserCheck {
 
-    String message() default "";
+    String message() default "현재 해당 서비스를 사용할 수 없는 상태입니다! 잠시후에 다시 시도해주세요";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     boolean isLimit();

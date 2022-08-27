@@ -30,13 +30,8 @@ public class UserValidator implements ConstraintValidator<UserCheck, HttpServlet
         try{
          userUtils.checkValid(value.getRemoteAddr());
         }catch (SigongException ex){
-
-            if(ex.getErrorCode() == ErrorCode.YOUR_BAN)
-                throw new SigongException(ErrorCode.YOUR_BAN);
-
-            else if(ex.getErrorCode() == ErrorCode.OVER_LIMIT_CNT && isLimit)
-                throw new SigongException(ErrorCode.OVER_LIMIT_CNT);
-
+            if(ex.getErrorCode() == ErrorCode.YOUR_BAN ) return false;
+            if(ex.getErrorCode() == ErrorCode.OVER_LIMIT_CNT && isLimit) return false;
         }
 
         return true;
